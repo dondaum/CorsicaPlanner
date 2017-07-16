@@ -16,6 +16,12 @@ gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 # bootstrap
 gem 'bootstrap-sass'
+# jquery for bootstrap
+gem 'jquery-rails'
+# testing framework
+gem 'rails-controller-testing'
+# user authenticate
+gem 'devise'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -41,6 +47,7 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'rspec-rails', '~> 3.5'
 end
 
 group :development do
