@@ -1,0 +1,32 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-3">Alle Reservierungen</h1>
+    <p class="lead">Willkommen zurück. Hier sind alle Reservierungen aufgelistet.</p>
+  </div>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>name</th>
+      <th>email</th>
+      <th>Start</th>
+      <th>Ende</th>
+      <th>Bestätigt</th>
+    </tr>
+
+    <% @reservation.each do |reservation| %>
+      <tr>
+        <td><%= reservation.name %></td>
+        <td><%= reservation.email %></td>
+        <td><%= reservation.start_time.strftime("%d.%m.%Y")  %></td>
+        <td><%= reservation.end_time.strftime("%d.%m.%Y")  %></td>
+        <td><%= reservation.accepted %></td>
+        <td><%= link_to 'Reservierung anzeigen', reservation_path(reservation) %></td>
+        <td><%= link_to 'Bearbeiten', edit_reservation_path(reservation) %></td>
+        <td><%= link_to "Löschen", reservation, method: :delete, data: { confirm: "Wollen Sie die Reservierung wirklich löschen?" } %></td>
+
+      </tr>
+    <% end %>
+    <%= link_to "Zurück", :back %>
+  </tbody>
+</table>

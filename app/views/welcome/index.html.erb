@@ -3,3 +3,5 @@
 <% if current_user.admin? %>
   <h1> Dieser User ist Admin </h1>
 <% end %>
+<li><%= link_to 'Neue Reservierung', new_path %> </li>
+<li><%= link_to 'Alle Reservierungen', all_path %> </li>

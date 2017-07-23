@@ -1,0 +1,27 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-3">Ferien auf Koriska buchen</h1>
+    <p class="lead">Bitte hier eine neue Reservierung erstellen.</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@reservation) do |f| %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+
+      <%= f.label :start_time %>
+      <%= f.date_select :start_time, {:include_blank => true, :default => nil}, class: 'form-control' %>
+
+      <%= f.label :end_time %>
+      <%= f.date_select :end_time, {:include_blank => true, :default => nil}, class: 'form-control' %>
+
+      <%= f.submit "Jetzt reservieren!", class: "btn btn-primary" %>
+      <%= link_to "Zurück", :back %>
+    <% end %>
+  </div>
+</div>

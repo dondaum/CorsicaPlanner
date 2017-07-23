@@ -1,0 +1,32 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-3">Detailinformationen zur Reservierung</h1>
+    <p class="lead">Hier findest du alle weiteren nützlichen Infos. </p>
+  </div>
+</div>
+<p>
+  <strong>Title:</strong>
+  <%= @reservation.name %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @reservation.email %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @reservation.start_time %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @reservation.end_time %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @reservation.accepted %>
+</p>
+  <li><%= link_to 'Edit', edit_reservation_path %></li>
+  <%= link_to "Zurück", :back %>

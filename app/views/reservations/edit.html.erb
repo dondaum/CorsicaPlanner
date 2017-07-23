@@ -1,0 +1,32 @@
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-3">Reservierung bearbeiten</h1>
+    <p class="lead">Willkommen. Hier können die Reservierungen bearbeitet werden.
+                    Bestätige Reservierungen oder ändere die Zeiträume für
+                    Reservierungen </p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@reservation) do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+
+      <%= f.label :Resrvierung_Bestätigen %>
+      <%= f.check_box :accepted, class: 'form-check' %>
+
+      <%= f.label :start_time %>
+      <%= f.date_select :start_time, class: 'form-control' %>
+
+      <%= f.label :end_time %>
+      <%= f.date_select :end_time, class: 'form-control' %>
+
+      <%= f.submit "Reservierung speichern!", class: "btn btn-primary" %>
+    <% end %>
+    <%= link_to "Zurück", :back %>
+  </div>
+</div>
