@@ -1,0 +1,32 @@
+<nav id="topNav" class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" href="#first"><i class="ion-ios-analytics-outline"></i> Der Urlaubsplanner</a>
+        </div>
+        <div class="navbar-collapse collapse" id="bs-navbar">
+            <ul class="nav navbar-nav">
+              <% if user_signed_in? %>
+                <li>
+                  <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+                </li>
+              <% else %>
+                <li>
+                  <%= link_to('Login', new_user_session_path) %>
+                </li>
+              <% end %>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                  <%= link_to "Admin", "#", :class => "btn btn-warning" %>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

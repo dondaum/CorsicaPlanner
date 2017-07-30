@@ -30,3 +30,16 @@
     <%= link_to "Zurück", :back %>
   </tbody>
 </table>
+
+<%= month_calendar events: @reservation do |date, reservation| %>
+  <%= date.day %>
+    <% reservation.each do |reservation| %>
+      <div>
+        <% if reservation.accepted? %>
+        <%= reservation.name %>
+        <% else %>
+        <p> Reservierung noch nicht bestätigt </p>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
