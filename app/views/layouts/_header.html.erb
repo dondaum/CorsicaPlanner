@@ -11,16 +11,12 @@
         </div>
         <div class="navbar-collapse collapse" id="bs-navbar">
             <ul class="nav navbar-nav">
-              <% if user_signed_in? %>
-                <li>
-                  <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
-                </li>
-              <% else %>
-                <li>
-                  <%= link_to('Login', new_user_session_path) %>
-                </li>
-              <% end %>
-
+              <li><%= link_to 'Neue Reservierung', new_path %>  </li>
+                <% if user_signed_in? %>
+                  <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+                <% else %>
+                  <li><%= link_to('Login', new_user_session_path) %></li>
+                <% end %>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>

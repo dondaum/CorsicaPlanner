@@ -13,7 +13,7 @@ before_action :authenticate_user!
         flash[:success] = "Reservierung wurde erfolgreich gespeichert"
 
     else
-      flash.now[:danger] = 'Bitte Felder überprüfen.' # Not quite right!
+    #  flash.now[:danger] = 'Bitte Felder überprüfen.' # Not quite right!
       render 'new'
     end
   end
