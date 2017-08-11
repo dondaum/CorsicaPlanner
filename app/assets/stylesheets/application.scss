@@ -16,6 +16,7 @@
  @import "bootstrap";
  @import "animate.min.css";
  @import "styles.css";
+ @import "reservations.scss";
 
 
  /* general */
@@ -127,6 +128,6 @@
    .current-month {}
 
    .has-events {
-     background: #0275d8
+     background: #0275D8
    }
  }

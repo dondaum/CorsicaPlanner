@@ -1,45 +1,118 @@
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-3">Alle Reservierungen</h1>
-    <p class="lead">Willkommen zurück. Hier sind alle Reservierungen aufgelistet.</p>
-  </div>
+<div class="navbar navbar-inverse navbar-fixed-left">
+  <a class="navbar-brand" href="#">Brand</a>
+  <ul class="nav navbar-nav">
+   <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+     <ul class="dropdown-menu" role="menu">
+      <li><a href="#">Sub Menu1</a></li>
+      <li><a href="#">Sub Menu2</a></li>
+      <li><a href="#">Sub Menu3</a></li>
+      <li class="divider"></li>
+      <li><a href="#">Sub Menu4</a></li>
+      <li><a href="#">Sub Menu5</a></li>
+     </ul>
+   </li>
+   <li><a href="#">Link2</a></li>
+   <li><a href="#">Link3</a></li>
+   <li><a href="#">Link4</a></li>
+   <li><a href="#">Link5</a></li>
+  </ul>
 </div>
-<table class="table">
-  <thead>
-    <tr>
-      <th>name</th>
-      <th>email</th>
-      <th>Start</th>
-      <th>Ende</th>
-      <th>Bestätigt</th>
-    </tr>
+<div class="container">
+ <div class="row">
+   <h2>Left side Navigation bar (Fixed)</h2>
 
-    <% @reservation.each do |reservation| %>
-      <tr>
-        <td><%= reservation.name %></td>
-        <td><%= reservation.email %></td>
-        <td><%= reservation.start_time.strftime("%d.%m.%Y")  %></td>
-        <td><%= reservation.end_time.strftime("%d.%m.%Y")  %></td>
-        <td><%= reservation.accepted %></td>
-        <td><%= link_to 'Reservierung anzeigen', reservation_path(reservation) %></td>
-        <td><%= link_to 'Bearbeiten', edit_reservation_path(reservation) %></td>
-        <td><%= link_to "Löschen", reservation, method: :delete, data: { confirm: "Wollen Sie die Reservierung wirklich löschen?" } %></td>
-
-      </tr>
-    <% end %>
-    <%= link_to "Zurück", :back %>
-  </tbody>
-</table>
-
-<%= month_calendar events: @reservation do |date, reservation| %>
-  <%= date.day %>
-    <% reservation.each do |reservation| %>
-      <div>
-        <% if reservation.accepted? %>
-        <%= reservation.name %>
-        <% else %>
-        <p> Reservierung noch nicht bestätigt </p>
+   <p>Left side Navigation</p>
+ </div>
+</div>
+<div class="row" id="row-form">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="page-header">
+      <h1 class="text-center">Alle Reservierungen</h1>
+      <p class="text-center">Willkommen zurück. Hier sind alle Reservierungen aufgelistet</p>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="text-center"> Dashboard </h3>
       </div>
-    <% end %>
-  <% end %>
-<% end %>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="well">
+                  <h4 class="text-danger"><span class="label label-danger pull-right"><%=Reservation.count %></span> # Anfragen</h4>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="well">
+                  <h4 class="text-success"><span class="label label-success pull-right"><%=Reservation.where(:accepted => true).count %></span> Buchungen</h4>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="well">
+                  <h4 class="text-primary"><span class="label label-primary pull-right">201</span> Sales </h4>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="well">
+                  <h4 class="text-success"><span class="label label-success pull-right">+ 24%</span> Pageviews </h4>
+                </div>
+              </div>
+            </div><!--/row-->
+          </div><!--/col-12-->
+        </div><!--/row-->
+      </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="text-center"> Kalender </h3>
+    </div>
+      <%= month_calendar events: @reservation do |date, reservation| %>
+        <%= date.day %>
+          <% reservation.each do |reservation| %>
+            <div>
+              <% if reservation.accepted? %>
+              <%= reservation.name %>
+              <% else %>
+              <p> Anfrage </p>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="text-center"> Buchungen </h3>
+      </div>
+	<div class="panel-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>name</th>
+          <th>email</th>
+          <th>Start</th>
+          <th>Ende</th>
+          <th>Bestätigt</th>
+        </tr>
+
+        <% @reservation.each do |reservation| %>
+          <tr>
+            <td><%= reservation.name %></td>
+            <td><%= reservation.email %></td>
+            <td><%= reservation.start_time.strftime("%d.%m.%Y")  %></td>
+            <td><%= reservation.end_time.strftime("%d.%m.%Y")  %></td>
+            <td><%= reservation.accepted %></td>
+            <div class="btn-group">
+            <td><%= link_to 'Reservierung anzeigen', reservation_path(reservation), :class => "btn btn-primary" %></td>
+            <td><%= link_to 'Bearbeiten', edit_reservation_path(reservation), :class => "btn btn-warning" %></td>
+            <td><%= link_to "Löschen", reservation, :class => "btn btn-danger", method: :delete, data: { confirm: "Wollen Sie die Reservierung wirklich löschen?" } %></td>
+            </div>
+
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+	</div>
+</div>
+</div>
+</div>

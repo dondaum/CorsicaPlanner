@@ -14,14 +14,14 @@
         <%= f.label :email %>
         <%= f.email_field :email, class: 'form-control' %>
 
-        <%= f.label :start_time %>
+        <%= f.label :Von %>
         <%= f.date_select :start_time, {:include_blank => true, :default => nil}, class: 'form-control' %>
 
-        <%= f.label :end_time %>
+        <%= f.label :Bis %>
         <%= f.date_select :end_time, {:include_blank => true, :default => nil}, class: 'form-control' %>
 
-        <%= f.submit "Jetzt reservieren!", class: "btn btn-primary" %>
-        <%= link_to "Zurück", :back %>
+        <br><%= f.submit "Jetzt reservieren!", class: "btn btn-primary" %>
+        <%= link_to "Zurück", :back %> </br>
       <% end %>
   </div>
 </div>
