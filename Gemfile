@@ -24,6 +24,10 @@ gem 'rails-controller-testing'
 gem 'devise'
 # simple calender gem
 gem "simple_calendar", "~> 2.0"
+# font aweseome
+gem "font-awesome-rails"
+# figaro
+gem "figaro"
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes

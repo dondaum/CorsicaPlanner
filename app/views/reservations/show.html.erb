@@ -1,33 +1,40 @@
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-3">Detailinformationen zur Reservierung</h1>
-    <p class="lead">Hier findest du alle weiteren nützlichen Infos. </p>
+
+<div class="row" id="row-form">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="page-header">
+      <h1 class="text-center">Detailinformationen zur Reservierung</h1>
+      <p class="text-center">Alle Informationen zur Reservierung von <%= @reservation.name %></p>
+    </div>
+    <p>
+      <strong>Title:</strong>
+      <%= @reservation.name %>
+    </p>
+
+    <p>
+      <strong>Email:</strong>
+      <%= @reservation.email %>
+    </p>
+
+    <p>
+      <strong>Reserviert von:</strong>
+      <%= @reservation.start_time.strftime("%d.%m.%y") %>
+    </p>
+
+    <p>
+      <strong>Resviert bis:</strong>
+      <%= @reservation.end_time.strftime("%d.%m.%y") %>
+    </p>
+
+    <p>
+      <strong>Anzahl reservierter Tage</strong>
+      <%= @day%> Tage
+    </p>
+
+    <p>
+      <strong>Reservierung bestätigt?:</strong>
+      <%= @reservation.accepted %>
+    </p>
+    <%= link_to 'Reservierung bearbeiten', edit_reservation_path, class: "btn btn-primary"%>
+    <%= link_to "Zurück", all_path, class: "btn btn-primary"%>
   </div>
 </div>
-<p>
-  <strong>Title:</strong>
-  <%= @reservation.name %>
-</p>
-
-<p>
-  <strong>Text:</strong>
-  <%= @reservation.email %>
-</p>
-
-<p>
-  <strong>Text:</strong>
-  <%= @reservation.start_time %>
-</p>
-
-<p>
-  <strong>Text:</strong>
-  <%= @reservation.end_time %>
-</p>
-
-<p>
-  <strong>Text:</strong>
-  <%= @reservation.accepted %>
-</p>
-  <li><%= link_to 'Edit', edit_reservation_path %></li>
-  <%= link_to "Zurück", :back %>
-  

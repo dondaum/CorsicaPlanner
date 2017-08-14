@@ -1,7 +1,7 @@
 <% if @reservation.errors.any? %>
   <div id="error_explanation">
     <div class="alert alert-danger">
-      Das Formular enthält <%= @reservation.errors.count%> Fehler %>.
+      Das Formular enthält <%= @reservation.errors.count%> Fehler.
     </div>
     <ul>
     <% @reservation.errors.full_messages.each do |msg| %>

@@ -1,5 +1,6 @@
 class ReservationsController < ApplicationController
 before_action :authenticate_user!
+before_action :is_admin?, except: [:new, :create]
 
 
   def new
@@ -46,6 +47,7 @@ before_action :authenticate_user!
 
   def show
     @reservation = Reservation.find(params[:id])
+    @day = ((@reservation.end_time - @reservation.start_time)/60/60/24).to_i
   end
 
 
@@ -55,5 +57,7 @@ before_action :authenticate_user!
       params.require(:reservation).permit(:name, :email, :start_time,
                                    :end_time, :accepted)
     end
+
+
 
 end
