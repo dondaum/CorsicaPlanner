@@ -1,0 +1,22 @@
+<div class="row" id="row-form">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="page-header">
+      <h1 class="text-center">Kalender</h1>
+      <p class="text-center">Hier sind alle Reservierungen und Anfragen zeitlich aufgelistet.</p>
+    </div>
+    <div class="panel panel-default">
+        <%= month_calendar events: @reservation do |date, reservation| %>
+          <%= date.day %>
+            <% reservation.each do |reservation| %>
+              <div>
+                <% if reservation.accepted? %>
+                <%= reservation.name %>
+                <% else %>
+                <p> Anfrage </p>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>

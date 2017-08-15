@@ -18,10 +18,17 @@
                 <li><%= link_to('Login', new_user_session_path) %></li>
               <% end %>
               <%if current_user.admin? %>
-              <li><%= link_to "Admin", all_path, :class => "btn btn-warning btn-outline btn-circle collapsed" %></li>
+              <li><a class="btn btn-warning btn-outline btn-circle collapsed"  data-toggle="collapse" href="#nav-collapse1" aria-expanded="false" aria-controls="nav-collapse1">Admin</a></li>
               <%else%>
               <li><%= link_to 'Neue Reservierung', new_path, :class => "btn btn-warning btn-outline btn-circle collapsed" %></li>
               <%end%>
+            </ul>
+            <ul class="collapse nav navbar-nav nav-collapse" id="nav-collapse1">
+              <li><%= link_to "Admin", all_path %></li>
+              <li> <%= link_to "Kalender", calendar_path %></li>
+              <li> <%= link_to "Überschneidungen", conflicts_path %></li>
+              <li><a href="#">Nachrichten</a></li>
+            </ul>
         </div>
       </div>
     </nav>

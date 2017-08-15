@@ -51,6 +51,15 @@ before_action :is_admin?, except: [:new, :create]
   end
 
 
+  def calendar
+    @reservation = Reservation.all
+  end
+
+  def conflicts
+    @reservation = Reservation.all
+  end
+
+
   private
 
     def reservation_params
