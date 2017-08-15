@@ -38,10 +38,11 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
         :port         => 587,
         :address      => "smtp.sendgrid.net",
-        :user_name    =>  Rails.application.secrets.secret_mailgun_account ,
-        :password     =>  Rails.application.secrets.secret_mailgun_password ,
+        :user_name    =>  Rails.application.secrets.secret_sendgrid_account ,
+        :password     =>  Rails.application.secrets.secret_sendgrid_password ,
       #  :domain       => "floating-reef-63299.herokuapp.com",
         :authentication => :plain
+    #    :enable_starttls_auto => true
     }
 
   # Print deprecation notices to the Rails logger.
