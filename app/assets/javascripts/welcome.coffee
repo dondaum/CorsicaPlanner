@@ -5,7 +5,7 @@
 
 $(document).ready ->
   setTimeout (->
-    $('#flash').remove()
+    $('#flash').fadeOut("slow")
     return
-  ), 3000
+  ), 5000
   return
