@@ -319,11 +319,12 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: 300;
 }
 
-/* Separator About - Parallax Section */
+/* Separator About - Parallax Section  background position was right 0px*/
 .sep {
 	background-attachment: fixed;
-	background-position: 50% 0;
+	background-position: 50% 50%;
 	background-repeat: no-repeat;
+  background-attachment: fixed;
 	height: 450px;
 	position: relative;
 }
