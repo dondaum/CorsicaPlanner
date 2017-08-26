@@ -12,6 +12,11 @@ before_action :is_admin?, except: [:new, :create, :success]
 
       respond_to do |format|
         if @reservation.save
+
+          #sending emails to reservation user and admin
+          ReservationMailer.request_email(@reservation).deliver_later
+          ReservationMailer.request_admin_email(@reservation).deliver_later
+
           format.html {redirect_to success_path}
            format.js
          else
@@ -74,6 +79,8 @@ before_action :is_admin?, except: [:new, :create, :success]
     @reservation = Reservation.find(params[:id])
     @reservation.update_attribute(:accepted, true)
     flash[:info]  = "Die Anfrage wurde nun bestätigt. Eine Bestätigungsemail wurde versendet."
+    #sending emails to reservation user and admin
+    ReservationMailer.accept_email(@reservation).deliver_later
     redirect_to all_path
   end
 

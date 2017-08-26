@@ -217,3 +217,35 @@ navbar
      background: #00BCD4
    }
  }
+
+ /* footer */
+
+ .copyrights{
+ margin-top:25px;
+ }
+
+
+ .dark-line{
+ border-top: 1px solid #525252;
+ }
+
+ .white-txt{
+ color: #FFF;
+ }
+
+
+ a.link {
+     color: #FFFFFF;
+     border: 1px #008acc solid;
+     padding: 5px;
+     text-decoration: none;
+ }
+
+ a.link:hover {
+ background: #008acc;
+     color: #383838;
+ }
+
+ .footimg{
+ width: 5rem;
+ }

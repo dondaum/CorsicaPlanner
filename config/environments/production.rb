@@ -62,6 +62,29 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "CorsicaPlanner_#{Rails.env}"
   config.action_mailer.perform_caching = false
 
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.raise_delivery_errors = true
+
+  config.action_mailer.perform_deliveries = true
+
+  config.action_mailer.perform_caching = false
+
+  host = 'sheltered-ravine-45606.herokuapp.com'
+
+  config.action_mailer.default_url_options = { host: host }
+
+
+  config.action_mailer.smtp_settings = {
+        :port         => 587,
+        :address      => "smtp.sendgrid.net",
+        :user_name    =>  Rails.application.secrets.secret_sendgrid_account ,
+        :password     =>  Rails.application.secrets.secret_sendgrid_password ,
+      #  :domain       => "floating-reef-63299.herokuapp.com",
+        :authentication => :plain
+    #    :enable_starttls_auto => true
+    }
+
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false

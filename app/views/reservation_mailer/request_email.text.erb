@@ -1,0 +1,6 @@
+Hi <%= @reservation.name %>
+Deine Reservierungsanfrage ist bei uns eingegangen. Wir prüfen schnellstmöglich ob zu diesem Termin noch etwas frei ist
+und melden uns anschließend bei dir.
+
+Termin: <%= @reservation.start_time.strftime("%d.%m.%y") %>-<%= @reservation.end_time.strftime("%d.%m.%y") %>
+Anzahl Tage:<%= @day%> Tage
