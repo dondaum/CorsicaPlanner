@@ -1,0 +1,7 @@
+//$('#new_reservation').remove();
+
+<% if @reservation %>
+  alert("Success!");
+<% else %>
+  $('#error-div').html('<%= j(render :partial => 'shared/error_messages', :object => @reservation) %>');
+<% end %>

@@ -1,4 +1,4 @@
-
+<% provide(:title, 'Alle Reservierungen') %>
 <div class="row" id="row-form">
   <div class="col-md-6 col-md-offset-3">
     <div class="page-header">
@@ -9,10 +9,9 @@
                     <thead>
                       <tr>
                         <th>Name</th>
-                        <th>Email</th>
-                        <th>Reservation Von</th>
-                        <th>Reservation Bis</th>
-                        <th>Bestätigt?</th>
+                        <th>Von</th>
+                        <th>Bis</th>
+                        <th>Bestätigt</th>
 												<th>Anzeigen</th>
 												<th>Bearbeiten</th>
 												<th>Löschen</th>
@@ -21,11 +20,14 @@
                       <% @reservation.each do |reservation| %>
                         <tr>
                           <td><%= reservation.name %></td>
-                          <td><%= reservation.email %></td>
                           <td><%= reservation.start_time.strftime("%d.%m.%Y")  %></td>
                           <td><%= reservation.end_time.strftime("%d.%m.%Y")  %></td>
-                          <td><%= reservation.accepted %></td>
                           <div class="btn-group">
+                            <% if reservation.accepted == true %>
+                            <td><%= link_to "#" ,class: "btn btn-default" do %><i class="fa fa-check"></i><% end %></td>
+                            <%else %>
+                          <td><%= link_to accept_reservation_path(reservation), :method => :put, class: "btn btn-success" do %><i class="fa fa-plus"></i><% end %></td>
+                            <%end %>
 													<td><%= link_to reservation_path(reservation), class: "btn btn-default" do %><i class="fa fa-eye"></i><% end %></td>
 													<td><%= link_to edit_reservation_path(reservation), class: "btn btn-primary" do %><i class="fa fa-pencil-square-o"></i><% end %></td>
 													<td><%= link_to reservation, class: "btn btn-danger", method: :delete, data: { confirm: "Wollen Sie die Reservierung wirklich löschen?" } do %><i class="fa fa-trash"></i><% end %></td>
@@ -34,5 +36,6 @@
                       <% end %>
                     </tbody>
                   </table>
+                  <%= will_paginate @reservation, renderer: BootstrapPagination::Rails %>
 								</div>
 							</div>

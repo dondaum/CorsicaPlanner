@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
 before_action :authenticate_user!
-before_action :is_admin?, except: [:new, :create]
+before_action :is_admin?, except: [:new, :create, :success]
 
 
   def new
@@ -9,14 +9,20 @@ before_action :is_admin?, except: [:new, :create]
 
   def create
     @reservation = Reservation.new(reservation_params)
-    if @reservation.save
-        redirect_to root_path
-        flash[:success] = "Reservierung wurde erfolgreich gespeichert"
 
-    else
-    #  flash.now[:danger] = 'Bitte Felder überprüfen.' # Not quite right!
-      render 'new'
+      respond_to do |format|
+        if @reservation.save
+          format.html {redirect_to success_path}
+           format.js
+         else
+            format.html {render 'new'
+            flash.now[:danger] = 'Bitte Felder überprüfen.'
+           } # Not quite right!
+          #  flash[:success] = "Reservierung wurde erfolgreich gespeichert"
+
+
     end
+   end
   end
 
   def update
@@ -25,7 +31,7 @@ before_action :is_admin?, except: [:new, :create]
     if @reservation.update_attributes(reservation_params)
       # Handle a successful update.
       flash.now[:success] = 'Reservierung wurde erfolgreich geändert.'
-      render 'show'
+      redirect_to all_path
     else
       render 'edit'
     end
@@ -42,12 +48,16 @@ before_action :is_admin?, except: [:new, :create]
   end
 
   def index
-    @reservation = Reservation.all
+    @reservation = Reservation.paginate(:page => params[:page], :per_page => 10)
+    #Post.paginate(:page => params[:page], :per_page => 30)
   end
 
   def show
     @reservation = Reservation.find(params[:id])
     @day = ((@reservation.end_time - @reservation.start_time)/60/60/24).to_i
+  end
+
+  def success
   end
 
 
@@ -57,6 +67,14 @@ before_action :is_admin?, except: [:new, :create]
 
   def conflicts
     @reservation = Reservation.all
+    #(a.start_time..a.end_time).overlaps?(b.start_time..b.end_time)
+  end
+
+  def accept
+    @reservation = Reservation.find(params[:id])
+    @reservation.update_attribute(:accepted, true)
+    flash[:info]  = "Die Anfrage wurde nun bestätigt. Eine Bestätigungsemail wurde versendet."
+    redirect_to all_path
   end
 
 

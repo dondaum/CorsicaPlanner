@@ -26,6 +26,8 @@ gem "simple_calendar", "~> 2.0"
 gem "font-awesome-rails"
 # figaro
 gem "figaro"
+# pagination
+gem 'will_paginate-bootstrap'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes

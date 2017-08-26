@@ -5,12 +5,17 @@ Rails.application.routes.draw do
 #  get 'reservation/new'
   get '/new', to: 'reservations#new'
   get '/all', to: 'reservations#index'
+  get '/success', to: 'reservations#success'
   get '/calendar', to: 'reservations#calendar'
   get '/conflicts', to: 'reservations#conflicts'
+  put 'accept/:id', to: 'reservations#accept', as: :accept_reservation
+
 
 
 
   resources :reservations
+
+
   devise_for :users, :skip => :registerable
 
 

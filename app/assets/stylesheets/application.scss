@@ -63,9 +63,15 @@ navbar
 
  #navbar-collapse-1 {
    padding-right: 20px;
+   body {
+    color: blue;
+  }
  }
 
- .navbar-brand { position: relative; z-index: 2; }
+ .navbar-brand {
+    position: relative; z-index: 2;
+    color: white;
+  }
 
 
  .navbar-nav.navbar-right .btn {
