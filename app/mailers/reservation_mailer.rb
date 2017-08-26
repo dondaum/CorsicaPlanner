@@ -1,5 +1,5 @@
 class ReservationMailer < ApplicationMailer
-   default from: "from@example.com"
+   default from: "sebastian.daum89@gmail.com"
 
    def request_email(reservation)
     @reservation = reservation
