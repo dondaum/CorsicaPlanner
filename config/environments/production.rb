@@ -70,16 +70,17 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  host = 'sheltered-ravine-45606.herokuapp.com'
+  host = 'corsica-house.de'
 
   config.action_mailer.default_url_options = { host: host }
 
 
   config.action_mailer.smtp_settings = {
-        :port         => 587,
-        :address      => "smtp.sendgrid.net",
-        :user_name    =>  Rails.application.secrets.secret_sendgrid_account ,
-        :password     =>  Rails.application.secrets.secret_sendgrid_password ,
+        :port         =>  587,
+        :domain       =>  Rails.application.secrets.secret_mailgun_domain ,
+        :address      =>  "smtp.mailgun.org",
+        :user_name    =>  Rails.application.secrets.secret_mailgun_account ,
+        :password     =>  Rails.application.secrets.secret_mailgun_password ,
       #  :domain       => "floating-reef-63299.herokuapp.com",
         :authentication => :plain
     #    :enable_starttls_auto => true
