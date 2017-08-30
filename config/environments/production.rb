@@ -77,13 +77,12 @@ Rails.application.configure do
 
   config.action_mailer.smtp_settings = {
         :port         =>  587,
-      #  :domain       =>  Rails.application.secrets.secret_mailgun_domain ,
+        :domain       =>  Rails.application.secrets.secret_mailgun_domain ,
         :address      =>  "smtp.mailgun.org",
         :user_name    =>  Rails.application.secrets.secret_mailgun_account ,
         :password     =>  Rails.application.secrets.secret_mailgun_password ,
-      #  :domain       => "floating-reef-63299.herokuapp.com",
         :authentication => :plain
-    #    :enable_starttls_auto => true
+
     }
 
   # Ignore bad email addresses and do not raise email delivery errors.
