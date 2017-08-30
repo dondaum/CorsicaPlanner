@@ -75,14 +75,24 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: host }
 
 
-  config.action_mailer.smtp_settings = {
-        :port         =>  25,
-        :address      =>  "smtp.mailgun.org",
-        :user_name    =>  Rails.application.secrets.secret_mailgun_account ,
-        :password     =>  Rails.application.secrets.secret_mailgun_password ,
-        :authentication => :plain
+    config.action_mailer.smtp_settings = {
+          :port         => 587,
+          :address      => "smtp.sendgrid.net",
+          :user_name    =>  Rails.application.secrets.secret_sendgrid_account ,
+          :password     =>  Rails.application.secrets.secret_sendgrid_password ,
+        #  :domain       => "floating-reef-63299.herokuapp.com",
+          :authentication => :plain
+      #    :enable_starttls_auto => true
+      }
 
-    }
+  #config.action_mailer.smtp_settings = {
+  #      :port         =>  25,
+  #      :address      =>  "smtp.mailgun.org",
+  #      :user_name    =>  Rails.application.secrets.secret_mailgun_account ,
+  #      :password     =>  Rails.application.secrets.secret_mailgun_password ,
+  #      :authentication => :plain
+#
+  #  }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
