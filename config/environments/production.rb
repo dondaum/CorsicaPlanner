@@ -76,7 +76,7 @@ Rails.application.configure do
 
 
   config.action_mailer.smtp_settings = {
-        :port         =>  587,
+        :port         =>  25,
         :address      =>  "smtp.mailgun.org",
         :user_name    =>  Rails.application.secrets.secret_mailgun_account ,
         :password     =>  Rails.application.secrets.secret_mailgun_password ,
