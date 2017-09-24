@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/calendar', to: 'reservations#calendar'
   get '/conflicts', to: 'reservations#conflicts'
   put 'accept/:id', to: 'reservations#accept', as: :accept_reservation
+  get 'overbooking/:id', to: 'reservations#overbooking', as: :overbooking_reservation
 
 
 
