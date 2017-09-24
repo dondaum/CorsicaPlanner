@@ -9,3 +9,17 @@ $(document).ready ->
     return
   ), 5000
   return
+
+#$(document).ready ->
+#  $('.img-responsive').click ->
+#    $(this).css 'width', (_, cur) ->
+#      if cur == '100px' then '100%' else '100px'
+#    return
+#  return
+
+$(document).ready ->
+  $('img').on 'click', ->
+    $('.enlargeImageModalSource').attr 'src', $(this).attr('src')
+    $('#enlargeImageModal').modal 'show'
+    return
+  return

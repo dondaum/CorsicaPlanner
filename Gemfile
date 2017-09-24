@@ -31,6 +31,11 @@ gem 'will_paginate-bootstrap'
 # inline css mailer
 gem 'premailer-rails'
 gem 'hpricot'
+# german translation
+#gem 'gettext_i18n_rails'
+#gem 'gettext', '>=3.0.2', :require => false, :group => :development
+#gem 'ruby_parser', :require => false, :group => :development
+gem 'rails-i18n'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes

@@ -1,6 +1,6 @@
 class Reservation < ApplicationRecord
 
-  text_empty  = "Feld darf nicht leer sein"
+  text_empty  = "darf nicht leer sein"
   default_scope { order(created_at: :desc) }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
