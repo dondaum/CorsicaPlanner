@@ -1,5 +1,5 @@
 class ReservationMailer < ApplicationMailer
-   default from: "sebastian.daum89@gmail.com"
+   default from: "knaupe@t-online.de"
 
    def request_email(reservation)
     @reservation = reservation
@@ -11,7 +11,8 @@ class ReservationMailer < ApplicationMailer
      @reservation = reservation
      @day = ((@reservation.end_time - @reservation.start_time)/60/60/24).to_i
      @url  = 'http://localhost:3000/all'
-     mail(to: "sebastian.daum89@gmail.com", subject: 'Es gibt eine neue Korsika Anfrage')
+     receipients = ["sebastian.daum89@gmail.com", "knaupe@t-online.de"]
+     mail(to: receipients, subject: 'Es gibt eine neue Korsika Anfrage')
    end
 
    def accept_email(reservation)
