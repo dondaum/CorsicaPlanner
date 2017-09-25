@@ -26,6 +26,10 @@ RSpec.describe Reservation, :type => :model do
     subject.end_time = nil
     expect(subject).to_not be_valid
   end
+#  it "is not valid when start_time is after end_time" do
+#    subject.start_time > subject.end_time
+#    expect(subject).to_not be_valid
+#  end
 end
 
 
