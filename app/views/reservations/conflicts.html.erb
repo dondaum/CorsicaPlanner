@@ -6,5 +6,12 @@
       <p class="text-center">Diese Übersicht dient dazu Überschneidungen bei den Anfragen und Buchungen direkt zu erkennen.</p>
     </div>
     <p> hi</p>
+    <%= @reservations.each do |reservation| %>
+    <%=  reservation.email %>
+    <%= reservation.name %>
+    <% end %>
+  </div>
+  <div class ="row">
+    <%= @b %>
   </div>
 </div>

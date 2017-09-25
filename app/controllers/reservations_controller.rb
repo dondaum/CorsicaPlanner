@@ -68,11 +68,20 @@ before_action :is_admin?, except: [:new, :create, :success]
 
   def calendar
     @reservation = Reservation.all
+
   end
 
   def conflicts
-    @reservation = Reservation.all
+#@reservations = Reservation.where("DATE(start_time) < ?", Date.today)
+    start_date = Date.today.at_beginning_of_week
+    end_date = Date.today.at_end_of_week
+    @reservations = Reservation.where('start_time>= ? AND end_time <= ?', :start_time, :end_time)
     #(a.start_time..a.end_time).overlaps?(b.start_time..b.end_time)
+  #  array = []
+  #  @reservation = Reservation.all.each do |x|
+  #     @b = x.start_time - x.end_time
+
+  #  end
   end
 
   def accept
@@ -83,6 +92,14 @@ before_action :is_admin?, except: [:new, :create, :success]
     ReservationMailer.accept_email(@reservation).deliver
     redirect_to all_path
   end
+
+#  def overbooking
+#    @initial = Reservation.find(params[:id])
+#    @reservations = Reservation.all
+#    @reservations.each do |reservation|
+#      (reservation.start_time..reservation.end_time).overlaps?(initial.start_time..initial.end_time)
+#    end
+#  end
 
 
   private
