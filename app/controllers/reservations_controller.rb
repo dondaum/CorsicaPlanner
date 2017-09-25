@@ -14,11 +14,11 @@ before_action :is_admin?, except: [:new, :create, :success]
         if @reservation.save
 
           #sending emails to reservation user and admin
-          ReservationMailer.request_email(@reservation).deliver
-          ReservationMailer.request_admin_email(@reservation).deliver
+        #  ReservationMailer.request_email(@reservation).deliver
+        #  ReservationMailer.request_admin_email(@reservation).deliver
 
           format.html {redirect_to success_path}
-           format.js
+          format.js
          else
             format.html {render 'new'
             flash.now[:danger] = 'Bitte Felder überprüfen.'
@@ -72,25 +72,36 @@ before_action :is_admin?, except: [:new, :create, :success]
   end
 
   def conflicts
-#@reservations = Reservation.where("DATE(start_time) < ?", Date.today)
-    start_date = Date.today.at_beginning_of_week
-    end_date = Date.today.at_end_of_week
-    @reservations = Reservation.where('start_time>= ? AND end_time <= ?', :start_time, :end_time)
-    #(a.start_time..a.end_time).overlaps?(b.start_time..b.end_time)
-  #  array = []
-  #  @reservation = Reservation.all.each do |x|
-  #     @b = x.start_time - x.end_time
+    @reservation = Reservation.paginate(:page => params[:page], :per_page => 10).where(:accepted => false)
 
-  #  end
   end
 
   def accept
     @reservation = Reservation.find(params[:id])
-    @reservation.update_attribute(:accepted, true)
-    flash[:info]  = "Die Anfrage wurde nun bestätigt. Eine Bestätigungsemail wurde versendet."
-    #sending emails to reservation user and admin
-    ReservationMailer.accept_email(@reservation).deliver
-    redirect_to all_path
+    overlaps = Reservation.where('start_time <= ? AND end_time >= ?', @reservation.end_time, @reservation.start_time)
+      if overlaps.count == 1 && overlaps.first.id == @reservation.id
+      #return if overlaps.count == 1 && overlaps.first.id == id
+      @reservation.update_attribute(:accepted, true)
+      flash[:info]  = "Die Anfrage wurde nun bestätigt. Eine Bestätigungsemail wurde versendet."
+      #sending emails to reservation user and admin
+      ReservationMailer.accept_email(@reservation).deliver
+      redirect_to all_path
+      else
+      flash[:danger]  = "Es gibt überschneidungen bei den Buchungen."
+      redirect_to all_path
+    end
+  end
+
+  def overbooking
+      reservation = Reservation.find(params[:id])
+      overlaps = Reservation.where('start_time <= ? AND end_time >= ?', reservation.end_time, reservation.start_time)
+      if overlaps.count == 1 && overlaps.first.id == reservation.id
+      #return if overlaps.count == 1 && overlaps.first.id == id
+      flash[:info]  = "Keine überschneidung"
+      redirect_to all_path
+      else
+      flash[:info]  = "Es gibt überschneidungen bei den Buchungen."
+    end
   end
 
 #  def overbooking

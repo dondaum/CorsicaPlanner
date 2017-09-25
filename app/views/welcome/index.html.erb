@@ -19,6 +19,8 @@
          <%= image_tag("corsica_me.png", :alt => "Responsive image", :class => "rounded mx-auto d-block") %>
          <p>Die Insel Korsika</p>
          <div class="name-label"></div>
+         <p><b>I18n.locale:</b>
+            <%= I18n.locale %>
        </div><! --/col-lg-4-->
        <div class="col-lg-8 name-desc">
          <h2>KORSIKA - <br/>Insel der Schönheit <br/> Gebirge im Meer</h2>
@@ -55,7 +57,7 @@
                      <div class="project">
                          <div class="photo-wrapper">
                              <div class="photo">
-                               <a class="fancybox"><%= image_tag("house1.jpg", :alt => "", :class => "img-responsive") %></a>
+                               <a class="fancybox"><%= image_tag("house1.jpg", :id => "test", :alt => "", :class => "img-responsive") %></a>
                              </div>
                              <div class="overlay"></div>
                          </div>
@@ -168,43 +170,54 @@
          <h3>Ein kleiner Schatz am Meer.</h3>
          <p>Perfekt für Familien, Ruhesuchenden und Entdecker.</p>
        </div><!-- /col-lg-8 -->
-
-     <div class="row mt">
-       <div class="col-lg-3 service">
-         <i class="fa fa-leaf"></i><p>Küche & Couch<br/><small>Treppe nach oben</small></p>
-           <a class="fancybox"><%= image_tag("inhouse1.jpg", :alt => "", :class => "img-responsive") %></a>
+       <div class="modal fade" id="enlargeImageModal" tabindex="-1" role="dialog" aria-labelledby="enlargeImageModal" aria-hidden="true"> <!--modal plugin for boostrap to enlarge image -->
+         <div class="modal-dialog modal-lg" role="document">
+           <div class="modal-content">
+             <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+             </div>
+             <div class="modal-body">
+               <img src="" class="enlargeImageModalSource" style="width: 100%;">
+             </div>
+           </div>
+         </div>
        </div>
-       <div class="col-lg-3 service">
-         <i class="fa fa-bed"></i><p>Schlafzimmer 1<br/><small>1 Stock</small></p>
-         <a class="fancybox"><%= image_tag("inhouse2.jpg", :alt => "", :class => "img-responsive") %></a>
-       </div>
-       <div class="col-lg-3 service">
-         <i class="fa fa-bed"></i><p>Schlafzimmer 2<br/><small>Erdgeschoss</small></p>
-         <a class="fancybox"><%= image_tag("inhouse4.jpg", :alt => "", :class => "img-responsive") %></a>
-       </div>
-       <div class="col-lg-3 service">
-         <i class="fa fa-bath"></i><p>1 Badezimmer oben<br/><small>1 Stock</small></p>
-         <a class="fancybox"><%= image_tag("inhouse5.jpg", :alt => "", :class => "img-responsive") %></a>
-       </div>
-     </div><! --/row -->
-     <div class="row mt">
-       <div class="col-lg-3 service">
-         <i class="fa fa-bath"></i><p>Badezimmer unten<br/><small>Erdgeschoss</small></p>
-         <a class="fancybox"><%= image_tag("inhouse6.jpg", :alt => "", :class => "img-responsive") %></a>
-       </div>
-       <div class="col-lg-3 service">
-         <i class="fa fa-sun-o"></i><p>Der Strand<br/><small>Gehört quasi zum Haus</small></p>
-         <a class="fancybox"><%= image_tag("inhouse7.jpg", :alt => "", :class => "img-responsive") %></a>
-       </div>
-       <div class="col-lg-3 service">
-         <i class="fa fa-star"></i><p>Gute Nachbarn<br/><small>Die Gumpen</small></p>
-         <a class="fancybox"><%= image_tag("inhouse8.jpg", :alt => "", :class => "img-responsive") %></a>
-       </div>
-       <div class="col-lg-3 service">
-         <i class="fa fa-star"></i><p>Gute Nachbarn II<br/><small>Bonifacio</small></p>
-         <a class="fancybox"><%= image_tag("inhouse9.jpg", :alt => "", :class => "img-responsive") %></a>
-       </div>
-     </div><! --/row -->
+       <div class="row mt">
+         <div class="col-lg-3 service">
+           <i class="fa fa-leaf"></i><p>Küche & Couch<br/><small>Treppe nach oben</small></p>
+             <a class="fancybox"><%= image_tag("inhouse1.jpg", :alt => "", :class => "img-responsive") %></a>
+         </div>
+         <div class="col-lg-3 service">
+           <i class="fa fa-bed"></i><p>Schlafzimmer 1<br/><small>1 Stock</small></p>
+           <a class="fancybox"><%= image_tag("inhouse2.jpg", :alt => "", :class => "img-responsive") %></a>
+         </div>
+         <div class="col-lg-3 service">
+           <i class="fa fa-bed"></i><p>Schlafzimmer 2<br/><small>Erdgeschoss</small></p>
+           <a class="fancybox"><%= image_tag("inhouse4.jpg", :alt => "", :class => "img-responsive") %></a>
+         </div>
+         <div class="col-lg-3 service">
+           <i class="fa fa-bath"></i><p>1 Badezimmer oben<br/><small>1 Stock</small></p>
+           <a class="fancybox"><%= image_tag("inhouse5.jpg", :alt => "", :class => "img-responsive") %></a>
+         </div>
+       </div><! --/row -->
+       <div class="row mt">
+         <div class="col-lg-3 service">
+           <i class="fa fa-bath"></i><p>Badezimmer unten<br/><small>Erdgeschoss</small></p>
+           <a class="fancybox"><%= image_tag("inhouse6.jpg", :alt => "", :class => "img-responsive") %></a>
+         </div>
+         <div class="col-lg-3 service">
+           <i class="fa fa-sun-o"></i><p>Der Strand<br/><small>Gehört quasi zum Haus</small></p>
+           <a class="fancybox"><%= image_tag("inhouse7.jpg", :alt => "", :class => "img-responsive") %></a>
+         </div>
+         <div class="col-lg-3 service">
+           <i class="fa fa-star"></i><p>Gute Nachbarn<br/><small>Die Gumpen</small></p>
+           <a class="fancybox"><%= image_tag("inhouse8.jpg", :alt => "", :class => "img-responsive") %></a>
+         </div>
+         <div class="col-lg-3 service">
+           <i class="fa fa-star"></i><p>Gute Nachbarn II<br/><small>Bonifacio</small></p>
+           <a class="fancybox"><%= image_tag("inhouse9.jpg", :alt => "", :class => "img-responsive") %></a>
+         </div>
+       </div><! --/row -->
      </div>
    </div><! --/container -->
  </div><! --/servicewrap -->

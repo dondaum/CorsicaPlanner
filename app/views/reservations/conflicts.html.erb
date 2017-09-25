@@ -1,17 +1,32 @@
-<% provide(:title, 'conflicts') %>
+<% provide(:title, 'Alle Reservierungen') %>
 <div class="row" id="row-form">
   <div class="col-md-6 col-md-offset-3">
     <div class="page-header">
-      <h1 class="text-center">Alle Anfragen und Reseriverungen die sich überschneiden</h1>
-      <p class="text-center">Diese Übersicht dient dazu Überschneidungen bei den Anfragen und Buchungen direkt zu erkennen.</p>
+      <h1 class="text-center">Finde Terminkonflikte</h1>
+      <p class="text-center">Hier sind zu allen Resevierungsanfragen die jeweiligen
+        Terminkonflikte zu anderen Anfragen aufgeführt.</p>
     </div>
-    <p> hi</p>
-    <%= @reservations.each do |reservation| %>
-    <%=  reservation.email %>
-    <%= reservation.name %>
-    <% end %>
-  </div>
-  <div class ="row">
-    <%= @b %>
-  </div>
-</div>
+									<table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Von</th>
+                        <th>Bis</th>
+                        <th>Konflikte</th>
+                      </tr>
+
+                      <% @reservation.each do |reservation| %>
+                        <tr>
+                          <td><%= reservation.name %></td>
+                          <td><%= reservation.start_time.strftime("%d.%m.%Y")  %></td>
+                          <td><%= reservation.end_time.strftime("%d.%m.%Y")  %></td>
+                          <div class="btn-group">
+													<td><%= link_to overbooking_reservation_path(reservation), class: "btn btn-danger", :method => :get do %><i class="fa fa-trash"></i><% end %></td>
+                          </div>
+                        </tr>
+                      <% end %>
+                    </tbody>
+                  </table>
+                  <%= will_paginate @reservation, renderer: BootstrapPagination::Rails %>
+								</div>
+							</div>
