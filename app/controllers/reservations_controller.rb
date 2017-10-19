@@ -14,8 +14,8 @@ before_action :is_admin?, except: [:new, :create, :success]
         if @reservation.save
 
           #sending emails to reservation user and admin
-        #  ReservationMailer.request_email(@reservation).deliver
-        #  ReservationMailer.request_admin_email(@reservation).deliver
+          ReservationMailer.request_email(@reservation).deliver
+          ReservationMailer.request_admin_email(@reservation).deliver
 
           format.html {redirect_to success_path}
           format.js
