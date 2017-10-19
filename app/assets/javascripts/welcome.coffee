@@ -17,7 +17,7 @@ $(document).ready ->
 #    return
 #  return
 
-$(document).ready ->
+$(document).on 'turbolinks:load', ->
   $('img').on 'click', ->
     $('.enlargeImageModalSource').attr 'src', $(this).attr('src')
     $('#enlargeImageModal').modal 'show'
