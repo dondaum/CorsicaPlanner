@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get 'overbooking/:id', to: 'reservations#overbooking', as: :overbooking_reservation
 
 
+  get '/info', to: 'welcome#info'
+  get '/discover', to: 'welcome#discover'
 
 
   resources :reservations
