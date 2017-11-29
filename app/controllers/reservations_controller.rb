@@ -69,6 +69,11 @@ before_action :is_admin?, except: [:new, :create, :success]
   def calendar
     @reservation = Reservation.all
 
+    beginning = Date.today
+    ending    = Date.today + 365
+    date_range = (beginning..ending)
+    date_months = date_range.map {|d| Date.new(d.year, d.month, 1) }.uniq
+    @dates =  date_months.map {|d| d.strftime "%d/%m/%Y" }
   end
 
   def conflicts

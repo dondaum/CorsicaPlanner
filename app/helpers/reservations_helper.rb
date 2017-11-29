@@ -4,4 +4,5 @@ module ReservationsHelper
     reservation.accepted = true
   end
 
+
 end

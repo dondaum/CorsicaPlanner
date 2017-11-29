@@ -1,23 +1,46 @@
 <% provide(:title, 'calendar') %>
 <div class="row" id="row-form">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="container">
     <div class="page-header">
       <h1 class="text-center">Kalender</h1>
       <p class="text-center">Hier sind alle Reservierungen und Anfragen zeitlich aufgelistet.</p>
     </div>
     <div class="panel panel-default">
-        <%= month_calendar events: @reservation do |date, reservation| %>
-          <%= date.day %>
-            <% reservation.each do |reservation| %>
-              <div>
-                <% if reservation.accepted? %>
-                <%= reservation.name %>
-                <% else %>
-                <p> Anfrage </p>
-              </div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#month" aria-controls="month" role="tab" data-toggle="tab">Monatskalender</a></li>
+          <li role="presentation"><a href="#year" aria-controls="year" role="tab" data-toggle="tab">Jahreskalender</a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="month">
+            <%= month_calendar events: @reservation do |date, reservation| %>
+              <%= date.day %>
+                <% reservation.each do |reservation| %>
+                  <div>
+                    <% if reservation.accepted? %>
+                    <%= reservation.name.truncate(10) %>
+                    <% else %>
+                    <p> Anfrage </p>
+                  </div>
+                <% end %>
+              <% end %>
             <% end %>
-          <% end %>
-        <% end %>
-      </div>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="year">
+                <div class="row">
+                    <% @dates.each_with_index do |month, i| %>
+                    <div class="col-lg-4">
+                      <%= month_calendar events: @reservation, start_date: month do |date, reservation| %>
+                          <%= date.day %>
+                            <div><% reservation.each do |reservation| %></div>
+                            <% end %>
+                          <% end %>
+                    </div>
+                   <% end %>
+                </div>
+          </div>
+        </div>
     </div>
   </div>
+</div>

@@ -15,3 +15,13 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require_tree .
+
+
+$(document).on('turbolinks:load', function() {
+
+  $('#myTabs a').click(function (e) {
+    e.preventDefault()
+    $(this).tab('show')
+  });
+
+});
